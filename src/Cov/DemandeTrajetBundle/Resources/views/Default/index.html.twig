@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Demandetrajets list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Dateajout</th>
+                <th>Datedemandee</th>
+                <th>Nombredeplace</th>
+                <th>Description</th>
+                <th>Villedepart</th>
+                <th>Villearrive</th>
+                <th>Etat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for demandeTrajet in demandeTrajets %}
+            <tr>
+                <td><a href="{{ path('demandetrajet_show', { 'id': demandeTrajet.id }) }}">{{ demandeTrajet.id }}</a></td>
+                <td>{% if demandeTrajet.dateAjout %}{{ demandeTrajet.dateAjout|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if demandeTrajet.dateDemandee %}{{ demandeTrajet.dateDemandee|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ demandeTrajet.nombreDePlace }}</td>
+                <td>{{ demandeTrajet.description }}</td>
+                <td>{{ demandeTrajet.villeDepart }}</td>
+                <td>{{ demandeTrajet.villeArrive }}</td>
+                <td>{{ demandeTrajet.etat }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('demandetrajet_show', { 'id': demandeTrajet.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('demandetrajet_edit', { 'id': demandeTrajet.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('demandetrajet_new') }}">Create a new demandeTrajet</a>
+        </li>
+    </ul>
+{% endblock %}

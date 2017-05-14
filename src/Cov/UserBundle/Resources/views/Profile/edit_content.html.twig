@@ -1,0 +1,26 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+<label for="file-input">
+    {{ form_widget(form.photo, { 'id': 'file-input'}) }}
+</label>
+
+<h3><strong>User Name</strong></h3> {{ form_widget(form.username) }}
+<h3><strong>First Name</strong></h3> {{ form_widget(form.prenom) }}
+<h3><strong>Last Name</strong></h3> {{ form_widget(form.name) }}
+<h3><strong>Email</strong></h3>  {{ form_widget(form.email) }}
+<h3><strong>Fonction</strong></h3> {{ form_widget(form.fonction) }}
+<h3><strong> Ville</strong></h3> {{ form_widget(form.Gouvernorat) }}
+
+<h3><strong> Telephone </strong></h3>  {{ form_widget(form.telephone) }}
+
+
+
+
+    <div>
+        <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+    </div>
+{{ form_end(form) }}
+
+
+

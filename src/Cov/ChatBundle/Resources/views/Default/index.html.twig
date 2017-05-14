@@ -1,0 +1,212 @@
+{% extends "@FOSUser/test.html.twig" %}
+
+{% block tit %}  <h2 ><strong><a href="">Live Chat Room</a></strong></h2> {% endblock tit %}
+
+ {% block fos_user_content %}
+     {% if idu is defined %}
+         <input name="idu" class="idu" id="{{ idu }}" value="{{ idu }}" hidden>
+         <input name="idu2" class="idu2" id="{{ app.user.id }}" value="{{ app.user.id }}" hidden>
+     {% else %}
+
+         <input name="idu" class="idu" id="2" value="2" hidden>
+         <input name="idu2" class="idu2" id="{{ app.user.id }}" value="{{ app.user.id }}" hidden>
+     {% endif %}
+     <div class="container">
+         <div class="row">
+             <div class="col-sm-4" style="padding-right: 11%" >
+                 <div class="msg-wrap" >
+
+                     {% for u in members %}
+
+                         {% if u.id != app.user.id %}
+                             <div class="mediamsgg">
+                                 <div class="media-body">
+                                     <small class="pull-right time"> {{ u.prenom }} {{ u.name }}</small>
+                                     <h4 class="media-heading"><a href="{{ path('cov_chat_homepagee',{'id':u.id,'id2':app.user.id}) }}">{{ u.username }} </a></h4>
+
+                                 </div>
+                             </div>
+
+                             <div class="alert alert-info msg-date">
+
+                             </div>
+                         {% endif %}
+                     {% endfor %}
+
+                 </div>
+
+
+             </div>
+
+
+
+
+             <div class="message-wrap col-lg-8" id="t">
+                 <div class="msg-wrap" id="room">
+                     {% if messages %}
+                         {% for m in messages %}
+
+
+                             <div class="mediamsg " id="{{ m.id }}">
+                                 <div class="media-body">
+                                     <small class="pull-right time"><i class="fa fa-clock-o"></i> {{ m.dateAjout|date }}</small>
+                                     <h4 class="media-heading">{{ m.user.username }}</h4>
+                                     <small class="col-lg-10">{{ m.contenu }} {{ m.user2.username }}</small>
+                                 </div>
+                             </div>
+
+                             <div class="alert alert-info msg-date">
+
+                             </div>
+                         {% endfor %}
+
+                     {% else %}
+                         <div class="mediamsg " id="0">
+                             <div class="media-body">
+
+                             </div>
+                         </div>
+
+
+
+
+                     {% endif %}
+
+
+                 </div>
+
+                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                     <div class="send-wrap ">
+
+                         <textarea class="form-control send-message" rows="3" placeholder="Write a reply..." id="msg"></textarea>
+                     </div>
+                     <div class="btn-panel" id="hhh">
+
+                         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <button  id="envoyer"  onclick="test()" class="submit btn red-color" >ENVOYER</button>
+                     </div>
+
+                 {% endif %}
+             </div>
+
+         </div>
+     </div>
+     </div>
+     <script>
+         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+         user =  '{{ app.user.username }}';
+         {% else %}
+         user = null;
+         {% endif %}
+
+
+
+
+         function test() {
+
+
+
+             var message = $('#msg').val();
+
+
+             $('#msg').val('');
+             $('#msg').focus();
+
+             var id2= $('.idu').attr('id');
+             var id = $('.idu2').attr('id');
+
+
+
+
+
+             $.ajax({
+                 type: "GET",
+                 url: "{{ path('cov_chat') }}",
+                 data: {
+                     'q': message,
+                     'id1':id,
+                     'id2':id2
+                 },
+                 dataType: "text",
+                 success: function () {
+
+                     //$('#room').prepend(newmsg);
+
+                     id=id;
+
+                     //afficheConversation();
+                 }
+
+             });
+
+
+         }
+
+         function charger(){
+
+             setTimeout( function(){
+                 // on lance une requête AJAX
+                 var idd= $('#room div.mediamsg:last').attr('id');
+                 var id2= $('.idu').attr('id');
+                 var id = $('.idu2').attr('id');
+                 if (typeof id2 !== 'undefined') {
+                     // the variable is defined
+                     if (typeof idd == 'undefined')
+                         var   idd=0;
+
+
+
+                     $.ajax({
+                         type: "GET",
+                         url: "{{ path('cov_chat_ch') }}",
+                         data: {
+                             'i': idd,
+                             'id1':id,
+                             'id2':id2
+                         },
+                         success : function(msg){
+                             var result = JSON.parse(msg);
+
+                             $.each(result, function (key, arr) {
+                                 $.each(arr, function (id, value) {
+
+                                     if (key == 'entities') {
+                                         if (id != 'error') {
+
+                                             var newmsg='<div class="mediamsg" id="'+ value[0] +'"><div class="media-body"> <small class="pull-right time">' +
+                                                     '<i class="fa fa-clock-o"></i>'+ value[2] +'</small><h4 class="media-heading">' + value[1] + '</h4> ' +
+                                                     '<small class="col-lg-10">'+ value[3] +'</small></div></div><div class="alert alert-info msg-date"> </div>';
+                                             // alert("ffff");
+
+                                             idd= $('#room div.mediamsg:first').attr('id');
+                                             if(parseInt(idd) < value[0]) {
+
+                                                 $('#room').prepend(newmsg);
+                                                 idd= $('#room div.mediamsg:first').attr('id');
+                                             }
+                                         }
+
+
+                                         // charger();
+
+                                     }
+                                 })
+                             });
+
+                         }
+                     });
+                 }
+
+
+
+                 charger(); // on relance la fonction
+             }, 2000); // on exécute le chargement toutes les 10 secondes
+         }
+
+         charger();
+
+
+
+
+     </script>
+
+ {% endblock fos_user_content %}

@@ -1,0 +1,7 @@
+cov_annonce_homepage:
+    path:     /
+    defaults: { _controller: CovAnnonceBundle:Annonce:index }
+
+cov_annonce_ajout:
+    path:     /addRide
+    defaults: { _controller: CovAnnonceBundle:Annonce:ajout }

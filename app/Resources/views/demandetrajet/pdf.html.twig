@@ -1,0 +1,27 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th>Date ajout</th>
+        <th>Date demandee</th>
+        <th>Nombre de place</th>
+        <th>Description</th>
+        <th>Ville depart</th>
+        <th>Ville arrive</th>
+        <th>Etat</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for demandeTrajet in demandeTrajets %}
+        <tr>
+            <td>{% if demandeTrajet.dateAjout %}{{ demandeTrajet.dateAjout|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{% if demandeTrajet.dateDemandee %}{{ demandeTrajet.dateDemandee|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ demandeTrajet.nombreDePlace }}</td>
+            <td>{{ demandeTrajet.description }}</td>
+            <td>{{ demandeTrajet.villeDepart }}</td>
+            <td>{{ demandeTrajet.villeArrive }}</td>
+            <td>{{ demandeTrajet.etat }}</td>
+
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

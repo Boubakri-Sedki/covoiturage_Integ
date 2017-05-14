@@ -1,0 +1,52 @@
+<table class="table table-hover" id="test">
+    <tr>
+
+        <th>User Name</th>
+        <th>Date d'ajout</th>
+        <th>Contenu</th>
+        <th>statut</th>
+        <th>Date Validation</th>
+        <th>Action</th>
+
+    </tr>
+    {% for t in temoignage %}
+        <tr>
+
+            <td>{{ t.user.username }}</td>
+            <td>{{ t.dateAjout|date }}</td>
+            <td><a href="{{ path('cov_temoignage_affiche',{'id':t.id}) }}"> {{ t.contenu|slice(0, 10)~ ' ...'}}</a></td>
+
+            {% if t.statut == 1 %}
+                <td><span class="label label-success">Approved</span></td>
+            {% elseif t.statut == -1 %}
+
+                <td><span class="label label-danger">Denied</span></td>
+            {% else %}
+                <td><span class="label label-warning">Pending</span></td>
+
+            {% endif %}
+
+            <td>{{ t.dateValidation|date }}</td>
+            <td>  <div class="btn-group">
+                    <button type="button" class="btn btn-danger">Action</button>
+                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ path('cov_temoignage_accepter',{'id':t.id}) }}">Publier</a></li>
+                        <li><a href="{{ path('cov_temoignage_refuser',{'id':t.id}) }}">Refuser</a></li>
+                        <li><a href="#">Text member</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ path('cov_temoignage_affiche',{'id':t.id}) }}">Afficher</a></li>
+                    </ul>
+                </div></td>
+
+        </tr>
+
+
+    {% else %}
+        <h2>tableau vide</h2>
+    {% endfor %}
+
+</table>

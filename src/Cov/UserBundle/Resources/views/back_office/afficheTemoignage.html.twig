@@ -1,0 +1,41 @@
+{% extends "@FOSUser/back_office/layout.html.twig" %}
+
+{% block members %}
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title"><strong>UserName: </strong>{{ temoignage.user.username }}</h3></br></br>
+        <h3 class="box-title"><strong>Date d'ajout: </strong>{{ temoignage.dateAjout|date }}</h3>
+
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                <i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                <i class="fa fa-times"></i></button>
+        </div>
+    </div>
+    <div class="box-body"></br></br>
+        <strong>{{ temoignage.contenu }}pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp ppppppppppppppppppppppppppppppppppppppp
+        pp pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+        ppppppppppppppppppppppppppppppppppppppppppppppp
+        ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+        </strong>
+    </div>
+    <div class="btn-group" style="align-content: center">
+        <button type="button" class="btn btn-danger" style="display: block; margin: 0 auto;">Action</button>
+        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Block member</a></li>
+            <li><a href="#">Email member</a></li>
+            <li><a href="#">Text member</a></li>
+            <li class="divider"></li>
+
+        </ul>
+    </div>
+    <!-- /.box-body -->
+
+    <!-- /.box-footer-->
+</div>
+{% endblock members %}

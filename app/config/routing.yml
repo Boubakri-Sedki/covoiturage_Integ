@@ -1,0 +1,85 @@
+
+
+cov_chat:
+    resource: "@CovChatBundle/Resources/config/routing.yml"
+    prefix:   /
+
+cov_temoignage_temoignage:
+    resource: "@CovTemoignageBundle/Controller/TemoignageController.php"
+    type:     annotation
+
+cov_temoignage:
+    resource: "@CovTemoignageBundle/Resources/config/routing.yml"
+    prefix:   /
+
+cov_user_ville:
+    resource: "@CovUserBundle/Controller/VilleController.php"
+    type:     annotation
+
+cov_user_gouvernorat:
+    resource: "@CovUserBundle/Controller/GouvernoratController.php"
+    type:     annotation
+
+cov_reclamation:
+    resource: "@CovReclamationBundle/Resources/config/routing.yml"
+    prefix:   /contact
+
+cov_evenement:
+    resource: "@CovEvenementBundle/Resources/config/routing.yml"
+    prefix:   /evenement
+
+cov_annonce:
+    resource: "@CovAnnonceBundle/Resources/config/routing.yml"
+    prefix:   /annonces
+
+cov_rides:
+    resource: "@CovAnnonceBundle/Resources/config/routing.yml"
+    prefix:   /annonces
+
+
+cov_home:
+    resource: "@CovHomeBundle/Resources/config/routing.yml"
+    prefix:   /
+
+cov_user:
+    resource: "@CovUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile
+
+discutea_forum:
+    resource: "@DForumBundle/Resources/config/routing.yml"
+    prefix:   /
+
+cov_forum_homepage:
+    path:     /forum
+    defaults: { _controller: CovForumBundle:Default:index }
+
+
+
+cov_demande_trajet:
+    resource: "@CovDemandeTrajetBundle/Resources/config/routing.yml"
+    prefix:   /trajet
+
+cov_reclamation_reclamation:
+    resource: "@CovReclamationBundle/Controller/ReclamationController.php"
+    type:     annotation
+

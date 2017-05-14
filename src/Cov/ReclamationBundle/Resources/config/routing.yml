@@ -1,0 +1,9 @@
+cov_reclamation_homepage:
+    path:     /
+    defaults: { _controller: CovReclamationBundle:Reclamation:index }
+cov_reclamation_traite:
+    path:     /rectraite
+    defaults: { _controller: CovReclamationBundle:Reclamation:traite }
+cov_reclamation_hometable:
+    path:     /rec
+    defaults: { _controller: CovReclamationBundle:Reclamation:index_admin }

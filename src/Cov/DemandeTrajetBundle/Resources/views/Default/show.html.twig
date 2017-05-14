@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Demandetrajet</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ demandeTrajet.id }}</td>
+            </tr>
+            <tr>
+                <th>Dateajout</th>
+                <td>{% if demandeTrajet.dateAjout %}{{ demandeTrajet.dateAjout|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datedemandee</th>
+                <td>{% if demandeTrajet.dateDemandee %}{{ demandeTrajet.dateDemandee|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Nombredeplace</th>
+                <td>{{ demandeTrajet.nombreDePlace }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ demandeTrajet.description }}</td>
+            </tr>
+            <tr>
+                <th>Villedepart</th>
+                <td>{{ demandeTrajet.villeDepart }}</td>
+            </tr>
+            <tr>
+                <th>Villearrive</th>
+                <td>{{ demandeTrajet.villeArrive }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ demandeTrajet.etat }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('demandetrajet_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('demandetrajet_edit', { 'id': demandeTrajet.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

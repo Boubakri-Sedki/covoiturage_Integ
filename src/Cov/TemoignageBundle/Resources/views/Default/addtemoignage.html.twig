@@ -1,0 +1,44 @@
+{% extends "@FOSUser/test.html.twig" %}
+
+{% block tit %}  <h2 ><strong><a href="">Ajouet Votre Temoignage</a></strong></h2> {% endblock tit %}
+
+ {% block fos_user_content %}
+
+
+
+         <div class="page-content">
+
+             <form id="cantact-form" action="" novalidate autocomplete="off" class="idealforms" method="post">
+
+                 <div class="field">
+                     <strong>UserName : </strong>  <input name="username" type="text" value="{{ app.user.username }}" readonly>
+                     <span class="error"></span>
+                 </div>
+
+
+
+
+                 <div class="field">
+                   <strong>Fonction : </strong>  <input  name="website" type="text"  value="{{ app.user.fonction }}" readonly >
+                     <span class="error"></span>
+                 </div>
+
+                 <div class="full-fild">
+                     {{ form_widget(form) }}
+                     <input type="text" value="{{ app.user.id }} " name="user" hidden/>
+                 </div>
+
+                 <div class="field buttons">
+                     <button type="submit" class="btn btn-lg blue-color">Submit</button>
+                 </div>
+
+                 <span id="invalid"></span>
+
+             </form>
+
+         </div><!-- end .page-content -->
+
+
+
+
+ {% endblock fos_user_content %}

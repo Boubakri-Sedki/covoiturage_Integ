@@ -1,0 +1,36 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="fos_user_user_show">
+
+
+   <h3><strong>User Name</strong></h3>
+     <input type="text" name="username" value="{{ app.user.username }}"
+            onfocus="  this.style.color='Red';  " />
+    <h3><strong>First Name</strong></h3>
+    <input type="text" name="prenom" value="{{ app.user.prenom }}" readonly/>
+    <h3><strong>Name</strong></h3>
+    <input type="text" name="name" value="{{ app.user.name }}" readonly/>
+    <h3><strong>Email</strong></h3>
+    <input type="text" name="email" value="{{ user.email }}" readonly/>
+
+    <h3><strong>Fonction</strong></h3>
+    <input type="text" name="email" value="{{ user.fonction }}" readonly/>
+
+    <h3><strong>Gouvernorat</strong></h3>
+    <input type="text" name="email" value="{{ user.gouvernorat.name }}" readonly/>
+
+
+
+    <h3><strong>Telephone</strong></h3>
+    <input type="text" name="email" value="{{ user.telephone }}" readonly/>
+
+    <h3><strong>Age</strong></h3>
+    <input type="text" name="email" value="{{
+         ('now'|date('Y') - user.dateNaissance|date('Y') - 1) + ('now'|date('2010-m-d')|date('U') -
+            user.dateNaissance|date('2010-m-d')|date('U') >= 0 ? 1 : 0)
+    }}" readonly/>
+
+
+
+
+</div>

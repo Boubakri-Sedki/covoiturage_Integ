@@ -1,0 +1,26 @@
+{% extends "@FOSUser/test.html.twig" %}
+
+{% block title %} {{ parent() }} - Profile{% endblock title %}
+{% block fos_user_img %}
+
+    <form action="{{  path('fos_user_profile_edit')}}">
+
+<label for="file-input">
+    {% if user.photo != null %}
+    &nbsp; &nbsp;&nbsp;  &nbsp; &nbsp;&nbsp; <img src=" {{ asset( user.photo) }}">
+        {% elseif user.sexe == "h" %}
+            &nbsp; &nbsp;&nbsp;  &nbsp; &nbsp;&nbsp; <img src=" {{ asset('bundles/covuser/img/a.png') }}">
+
+        {% elseif user.sexe == 'f' %}
+        &nbsp; &nbsp;&nbsp;  &nbsp; &nbsp;&nbsp; <img src=" {{ asset('bundles/covuser/img/female.jpg') }}">
+
+    {% endif %}
+</label>
+
+
+    <input value="Upload" type="file"  name="img" id="file-input" style="display: none">
+        </form>
+{% endblock fos_user_img %}
+{% block fos_user_content %}
+{% include "@FOSUser/Profile/show_content.html.twig" %}
+{% endblock fos_user_content %}

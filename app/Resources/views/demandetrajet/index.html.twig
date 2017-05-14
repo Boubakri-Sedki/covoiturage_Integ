@@ -1,0 +1,55 @@
+{% extends '@FOSUser/test.html.twig' %}
+{% block title %} index {% endblock %}
+{% block tit %}
+    <h2 ><strong><a href="{{ path('demandetrajet_new') }}" style="color: black">nouveau trajet</a></strong></h2>
+    <h2 ><strong><a href="{{ path('cov_demande_trajet_chercher') }}" style="color: black">chercher demande</a></strong></h2>
+{% endblock %}
+{% block tem %}
+    <h1>Demandetrajets list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Dateajout</th>
+                <th>Datedemandee</th>
+                <th>Nombredeplace</th>
+                <th>Description</th>
+                <th>Villedepart</th>
+                <th>Villearrive</th>
+                <th>Etat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for demandeTrajet in demandeTrajets %}
+            <tr>
+                <td>{% if demandeTrajet.dateAjout %}{{ demandeTrajet.dateAjout|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if demandeTrajet.dateDemandee %}{{ demandeTrajet.dateDemandee|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ demandeTrajet.nombreDePlace }}</td>
+                <td>{{ demandeTrajet.description }}</td>
+                <td>{{ demandeTrajet.villeDepart }}</td>
+                <td>{{ demandeTrajet.villeArrive }}</td>
+                <td>{{ demandeTrajet.etat }}</td>
+                <td class="navigation sf-js-enabled sf-arrows">
+                    <div class="navigation">
+                            <a href="{{ path('demandetrajet_show', { 'id': demandeTrajet.id }) }}">show</a>
+                            <a href="{{ path('demandetrajet_edit', { 'id': demandeTrajet.id }) }}">edit</a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="page-sub-title textcenter">
+        <h2>
+            <strong>
+                <a href="{{ path('cov_demande_trajet_pdf') }} ">Extraire PDF</a>
+            </strong>
+        </h2>
+        <h2>
+            <strong>
+                <a href="{{ path('demandetrajet_new') }} ">Demander nouveau Trajett</a>
+            </strong>
+        </h2>
+        </div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends '@FOSUser/test.html.twig' %}
+{% block tit %}
+    <h2 ><strong><a href="{{ path('demandetrajet_new') }}" style="color: black">nouveau trajet</a></strong></h2>
+    <h2 ><strong><a href="{{ path('demandetrajet_index') }}" style="color: black">index demande</a></strong></h2>
+{% endblock %}
+{% block tem %}
+    <h1>Demandetrajet edit</h1>
+
+    {{ form_start(edit_form) }}
+       {{ form_widget(edit_form) }}
+        <input type="submit" value="Edit" />
+    {{ form_end(edit_form) }}
+    <div class="page-sub-title textcenter">
+        <h2>
+            <strong>
+                <a href="{{ path('demandetrajet_index') }} ">Index</a>
+            </strong>
+        </h2>
+        <h2>
+            <strong>
+                <a href="{{ path('demandetrajet_new') }} ">Demander nouveau Trajett</a>
+            </strong>
+        </h2>
+    </div>
+
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+
+{% endblock %}

@@ -1,0 +1,15 @@
+cov_chat_homepage:
+    path:     /chat
+    defaults: { _controller: CovChatBundle:Default:index }
+
+cov_chat:
+    path:     /chatt
+    defaults: { _controller: CovChatBundle:Chat:index }
+
+cov_chat_ch:
+    path:     /chatch
+    defaults: { _controller: CovChatBundle:Chat:check }
+
+cov_chat_homepagee:
+    path:     /cha
+    defaults: { _controller: CovChatBundle:Default:show }

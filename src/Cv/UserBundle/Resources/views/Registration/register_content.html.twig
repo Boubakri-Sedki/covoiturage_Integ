@@ -1,0 +1,636 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    {{ form_widget(form) }}
+    <div>
+        <input type="submit" value="{{ 'registration.submit'|trans }}" />
+    </div>
+{{ form_end(form) }}
+
+----------------------------------------------------------------------------------------------------------------------------------
+<body>
+
+<header class="header">
+
+    <div class="top-menu">
+
+        <section class="container">
+            <div class="row">
+
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="user-log">
+
+                        <a data-toggle="modal" data-target="#loginModal">
+                            Log in
+                        </a> /
+                        <a data-toggle="modal" data-target="#regModal">
+                            Sign up
+                        </a>
+
+                    </div><!-- end .user-log -->
+                </div><!-- end .col-sm-4 -->
+
+                <div class="col-md-8 col-sm-8 col-xs-12">
+
+                    <ul class="social-icons">
+                        <li>
+                            <a class="facebook" href="#">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="twitter" href="#">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="google" href="#">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div><!-- end .col-sm-8 -->
+
+            </div><!-- end .row -->
+        </section><!-- end .container -->
+
+    </div><!-- end .top-menu -->
+
+    <div class="main-baner">
+
+        <div class="background parallax clearfix" style="background-image:url('img/tumblr_n7yhhvUQtx1st5lhmo1_1280.jpg');" data-img-width="1600" data-img-height="1064">
+
+            <div class="main-parallax-content">
+
+                <div class="second-parallax-content">
+
+                    <section class="container">
+
+                        <div class="row">
+
+                            <div class="main-header-container clearfix">
+
+                                <div class="col-md-4 col-sm-12 col-xs-12" >
+
+                                    <div class="logo">
+                                        <h1>My ride</h1>
+                                    </div><!-- end .logo -->
+
+                                </div><!-- end .col-sm-4 -->
+
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+
+                                    <nav id="nav" class="main-navigation" hidden>
+
+                                        <ul class="navigation">
+                                            <li>
+                                                <a href="index.html">Home</a>
+                                            </li>
+                                            <li>
+                                                <a href="rides.html">rides</a>
+                                            </li>
+                                            <li>
+                                                <a href="add-ride.html">Submit</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Pages</a>
+                                                <ul class="sub-menu">
+                                                    <li>
+                                                        <a href="events.html">Events</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="single-post.html">Single post</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="single-article.html">Single article</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="blog.html">Blog</a>
+                                            </li>
+                                            <li>
+                                                <a href="contact-page.html">Contact</a>
+                                            </li>
+                                        </ul>
+
+                                    </nav><!-- end .main-navigation -->
+
+                                </div><!-- end .col-md-8 -->
+
+                            </div><!-- end .main-header-container -->
+
+
+                        </div><!-- end .row -->
+
+                    </section><!-- end .container -->
+
+                </div><!-- end .second-parallax-content -->
+
+            </div><!-- end .main-parallax-content -->
+
+        </div><!-- end .background .parallax -->
+
+    </div><!-- end .main-baner -->
+
+</header><!-- end .header -->
+
+<section class="main-content">
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+
+                <div class="page-sub-title textcenter">
+                    <h2>Inscription</h2>
+                    <div class="line"></div>
+                </div><!-- end .page-sub-title -->
+
+            </div><!-- end .col-md-12 col-sm-12 col-xs-12 -->
+
+            <div class="col-md-9 col-sm-12 col-xs-12">
+
+                <div class="page-content">
+
+                    <form id="cantact-form" action="" novalidate autocomplete="off" class="idealforms add-ride">
+
+                        <div class="field">
+                            <select id="destination" name="sexe">
+                                <option value="default">Presentez vous *</option>
+                                <option value="h">Monsieur</option>
+                                <option value="f">Madame</option>
+
+                            </select>
+                        </div>
+                        <div class="field">
+                            <input name="nom" type="text" placeholder="Nom *">
+                            <span class="error"></span>
+                        </div>
+
+                        <div class="field">
+                            <input name="prenom" type="text" placeholder="Prenom *">
+                            <span class="error"></span>
+                        </div>
+                        <div class="field">
+                            <select id="destination" name="fonction">
+                                <option value="default">Fonction</option>
+                                <option value="e">Etudiant</option>
+                                <option value="f">Fonctionnaire</option>
+                                <option value="c">Cadre</option>
+                                <option value="l">Fonction libérale</option>
+                                <option value="a">Autre</option>
+
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <input name="email" type="email" placeholder="Email address *" >
+                            <span class="error"></span>
+                        </div>
+                        <div class="field">
+                            <input name="password" type="password" placeholder="Mot de passe *" >
+                            <span class="error"></span>
+                        </div>
+                        <div class="field">
+                            <input name="confirm-password" type="password" placeholder="Confirmer le mot de passe *" >
+                            <span class="error"></span>
+                        </div>
+                        <div class="field">
+                            <input name="datedenaissance" type="text" placeholder="Date de naissance *" class="datepicker">
+                        </div>
+                        <div class="field">
+                            <select id="destination" name="gouvernorat">
+                                <option value="default">Gouvernorat *</option>
+                                <option value="Ariana">Ariana</option>
+                                <option value="Beja">Beja</option>
+                                <option value="Ben Arous">Ben Arous</option>
+                                <option value="Bizerte">Bizerte</option>
+                                <option value="Gabes">Gabes</option>
+                                <option value="Gafsa">Gafsa</option>
+                                <option value="Jendouba">Jendouba</option>
+                                <option value="Kairouan">Kairouan</option>
+                                <option value="Kasserine">Kasserine</option>
+                                <option value="Kebili">Kebili</option>
+                                <option value="Kef">Kef</option>
+                                <option value="Mahdia">Mahdia</option>
+                                <option value="Manouba">Manouba</option>
+                                <option value="Mednine">Mednine</option>
+                                <option value="Monastir">Monastir</option>
+                                <option value="Nabel">Nabel</option>
+                                <option value="Sfax">Sfax</option>
+                                <option value="Sidi Bouzid">Sidi Bouzid</option>
+                                <option value="Siliana">Siliana</option>
+                                <option value="Sousse">Sousse</option>
+                                <option value="Tataouine">Tataouine</option>
+                                <option value="Tozer">Tozer</option>
+                                <option value="Tunis">Tunis</option>
+                                <option value="Zaghouan">Zaghouan</option>
+
+                            </select>
+                        </div>
+                        <div class="field">
+                            <select id="destination" name="ville">
+                                <option value="default">Ville *</option>
+                                <option value="Ariana ville">Ariana ville</option>
+                                <option value="Charguia">Charguia</option>
+                                <option value="El manar">El manar</option>
+                                <option value="Enasser">Enasser</option>
+                                <option value="Raoued">Raoued</option>
+
+
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <input name="tele" type="number" placeholder="Telephone *">
+                            <span class="error"></span>
+                        </div>
+
+
+                        <div class="full-fild">
+                                    <textarea name="message" id="message" cols="5"  rows="11" readonly>
+									Termes d'utilisation
+
+Termes d'utilisations de Covoiturage.ca (et de ses sites affiliés) - Dernière mise-à-jour: 01 avril, 2016
+
+Covoiturage.ca et ridesharing.com sont des noms d'affaires utilisés par COVOITURAGEMONTREAL inc..
+Ces termes et conditions d'utilisation «termes d'utilisation» régissent votre relation avec COVOITURAGEMONTREAL inc. qui opère le site Internet www.covoiturage.ca (le «Service»). Ces termes d'utilisation s'appliquent également lorsque le site Internet est accédé via les autres URL détenues par Covoiturage.ca. Vous êtes tenus de lire et de comprendre ces termes d'utilisation attentivement avant d'utiliser le Service.
+Votre accès à et l'utilisation du service est basé sur votre acceptation et le respect de ces termes. Ces termes généraux sont applicables à tous les visiteurs, les utilisateurs et d'autres qui accèdent ou utilisent le Service. En accédant ou en utilisant le Service, vous acceptez d'être lié par ces termes et acceptez toutes les conséquences juridiques. Si vous ne consentez pas à ces termes et conditions, en tout ou en partie, s'il vous plaît ne pas utiliser le Service.
+
+Âge minimum requis
+En vous inscrivant, vous confirmez avoir l'âge minimum requis pour utiliser le Service qui est de seize (16) ans. Vous comprenez également que certains conducteurs qui offrent des trajets peuvent exiger que le passager membre du Service qui réserve une place ou plusieurs places à bord de leur véhicule soit âgé d'un minimum de dix-huit (18) ans ou, dans d'autres cas, d'un minimum de vingt-et-un (21) ans. Le conducteur est en droit de refuser l'embarquement d'un passager ayant fait une fausse déclaration lors de la réservation. Un passager ayant fait une fausse déclaration lors de la réservation ne sera pas remboursé et ni dédommagé pour les frais de réservation et la contribution d'argent versés lors de la réservation.
+À titre de passager inscrit au Service, vous êtes autorisé à réserver plus d'une place pour un même trajet qui sera effectué bord du même véhicule (une «Réservation de groupe») afin que des passagers puissent vous accompagner («Passager accompagnateur»). En effectuant une Réservation de groupe, vous serez alors identifié comme étant le «Passager responsable du groupe» et vous devrez payer les frais de réservations ainsi que la totalité de la contribution d'argent exigée par le conducteur pour le nombre de places réservées. Un Passager responsable du groupe peut être accompagné d'un Passager accompagnateur qui est âgé de moins de 16 ans seulement s'il est son parent ou son tuteur légal.
+
+
+Achats
+Si vous souhaitez acheter un service mis à disposition par le Service ("Réserver"), vous pouvez être invité à fournir certaines informations pertinentes à votre achat, y compris, sans limitation, votre numéro de carte de crédit, la date d'expiration de votre carte de crédit, votre adresse de facturation et autres informations.
+
+Vous déclarez et garantissez que: (i) vous avez le droit légal d'utiliser une carte (s) de crédit ou une autre méthode (s) de paiement dans le cadre d'un achat; et que (ii) les informations que vous nous fournissez sont vraies, exactes et complètes. En soumettant ces informations, vous nous accordez le droit de fournir des informations à des tiers à des fins de facilitation la réalisation des achats.
+
+Nous nous réservons le droit de refuser ou d'annuler votre commande à tout moment pour certaines raisons, y compris mais sans s'y limiter: la disponibilité du Service, erreurs dans la description ou le prix du Service, erreur dans votre commande ou d'autres raisons. Nous nous réservons le droit de refuser ou d'annuler votre commande en cas de fraude ou d'une transaction non autorisée ou illégale est soupçonnée. Nous ne serons pas tenus responsables de toute interruption de service permettant de compléter votre achat, ou de toute perte ou dommage résultant de votre achat.
+
+
+Disponibilité, erreurs et inexactitudes
+Afin d'offrir un service exceptionnel, nous mettons à jour régulièrement le Service.
+
+Nous ne pouvons pas et ne garantissons pas l'exactitude de l'information, y compris les prix, les images, les spécifications, la disponibilité et les services. Nous nous réservons le droit de modifier ou de mettre à jour l'information et de corriger les erreurs, inexactitudes ou omissions, et ce, à tout moment et sans préavis.
+
+Malgré tous nos efforts, les services disponibles sur notre Service peuvent présenter une erreur sur le prix, être décrits de façon inexacte ou être indisponible.
+
+Il est possible que nous fassions face à des délais dans la mise à jour des informations sur le Service et lors de promotion et publicité sur d'autres sites.
+
+
+Concours, prix et promotions
+Tous les concours, prix ou autres promotions (collectivement, «Promotions») mis à disposition par le Service peuvent être régis par des règles qui sont différentes de ces termes et conditions. Si vous participez à des promotions, s'il vous plaît examiner les règles applicables ainsi que notre Politique de confidentialité. Si les règles applicables aux promotions sont différentes des présents termes, les règles de promotion seront applicables. Les promotions peuvent être disponibles pour un temps limité.
+
+
+Contenu
+Notre Service vous permet aux conducteurs de publier des offres de covoiturage, aux passagers de réserver des places à bord de trajets offerts par des conducteurs et permet également de publier, afficher et partager certaines informations, textes, images, ou d'autres matériaux ("Contenu"). Vous êtes responsable du Contenu que vous publiez sur le Service, y compris sa légalité, la fiabilité et la pertinence.
+
+En envoyant du Contenu au Service, vous nous accordez le droit et la licence d'utiliser, de modifier, exécuter publiquement, afficher publiquement, reproduire et distribuer ce Contenu sur et à travers le Service. Vous conservez tous vos droits sur le Contenu que vous soumettez, publiez ou affichez sur ou via le Service et vous êtes responsable de la protection de ces droits. Vous acceptez que cette licence inclut le droit pour nous de rendre votre contenu disponible pour les autres utilisateurs du Service, qui peuvent également utiliser ce contenu en respectant certaines conditions.
+
+Vous déclarez et garantissez que: (i) le contenu est le vôtre (vous en êtes propriétaire) ou si vous avez le droit d'utiliser et de nous accorder les droits et la licence tel que prévu dans les présentes Conditions, et (ii) l'affichage de votre Contenu sur ou via le Service ne viole pas les droits de la vie privée, les droits de publicité, les droits d'auteur, les droits contractuels ou d'autres droits de toutes personnes.
+
+Nous nous réservons tous les droits de bloquer ou de supprimer des communications ou des matériaux que nous jugeons être: (a) injurieux, diffamatoire, ou obscène; (b) frauduleux, trompeur ou mensonger; (c) en violation du droit d'auteur, de marque ou autre droit de l'autre ou de la propriété intellectuelle; (d) blessant ou autrement inacceptable pour nous à notre seule discrétion.
+
+Vous reconnaissez, qu'en vous offrant la possibilité de distribuer ou de visualiser du contenu généré par les utilisateurs sur le Service, nous agissons simplement en tant qu'intermédiaire passif permettant une telle distribution et que cela ne nous confère aucune obligation ou responsabilité relative à tout contenu ou activités sur le Service.
+
+
+Comptes
+Lorsque vous créez un compte avec nous, vous devez nous fournir des informations exactes, complètes et à jour à tout moment. Ne pas le faire constitue une violation des Termes, ce qui peut entraîner la résiliation immédiate de votre compte sur notre Service.
+
+Vous êtes responsable de la sauvegarde du mot de passe que vous utilisez pour accéder au Service et pour toutes les activités ou actions sous votre mot de passe.
+
+Vous acceptez de ne pas divulguer votre mot de passe à un tiers. Vous devez nous aviser immédiatement après avoir pris connaissance de toute violation de la sécurité ou de l'utilisation non autorisée de votre compte.
+
+
+Liens vers d'autres sites Web
+Le Service peut contenir des liens vers des sites Web de tiers ou des services qui ne sont pas détenus ou contrôlés par COVOITURAGEMONTREAL inc.
+
+COVOITURAGEMONTREAL inc . n'a aucun contrôle sur, et décline toute responsabilité pour le contenu, les politiques de confidentialité ou les pratiques de tous les sites ou services Web tiers. Vous reconnaissez et acceptez que COVOITURAGEMONTREAL inc. ne doit pas être tenu responsable, directement ou indirectement, de tout dommage ou perte causé ou prétendument causé par ou en relation avec l'utilisation ou le recours à tout contenu, produits ou services disponibles sur ou via ces sites ou services.
+
+Nous vous conseillons vivement de lire les termes et conditions et la politique de confidentialité de tous les sites ou services Web tiers que vous visitez.
+
+
+Résiliation
+Nous pouvons résilier ou suspendre l'accès à notre Service immédiatement, sans préavis ni responsabilité, pour quelque raison que ce soit, y compris, sans limitation, si vous ne respectez pas les Termes.
+
+Toutes les dispositions des Termes survivront à la résiliation, y compris, sans limitation, les dispositions de propriété, exclusions de garantie, indemnité et limitations de responsabilité. En cas de résiliation, votre droit d'utiliser le Service cessera immédiatement. Si vous souhaitez mettre fin à votre compte, vous pouvez tout simplement cesser d'utiliser le Service.
+
+
+Indemnisation
+Vous acceptez d'indemniser, défendre et dégager COVOITURAGEMONTREAL inc., ses directeurs, administrateurs, dirigeants, représentants, employés, entrepreneurs, concédants, licenciés, fournisseurs, clients, partenaires et agents, de et contre toutes réclamations, pertes, dommages, obligations, coûts, actions ou demandes.
+
+Elles incluent, mais ne sont pas limités à : ( a) les frais juridiques et comptables résultant de votre utilisation du Service ; ( b ) votre violation de l'un de ces Termes ; ( c ) tout ce que vous publiez sur le Service ; et ( d ) toute activité liée à votre compte. Cela comprend toute conduite négligente ou illégale par vous, toute personne ou entité ayant accédé au Service en utilisant votre compte, et ce, même si cette utilisation a été faite par des moyens frauduleux ou illégaux.
+
+
+Limitation de responsabilité
+COVOITURAGEMONTREAL. Inc, Ses administrateurs, employés , partenaires, agents, fournisseurs, clients, partenaires ou sociétés affiliées, ne doivent pas être tenus responsables de toutes pertes ou dommages, directs ou indirects, accessoires , spéciaux, consécutifs ou punitifs, y compris, sans limitation, la perte économique, pertes ou dommages aux médias électroniques ou de données, de clientèle ou d'autres pertes intangibles, découlant de ( i ) votre accès ou l'utilisation du Service; ( ii ) votre incapacité à accéder ou utiliser le Service; ( iii ) toute conduite ou le contenu de tout tiers ou liés à un service ; ( IIV ) tout contenu obtenu à partir ou via le Service ; et (v ) l' accès non autorisé, l'utilisation ou la modification de vos transmissions ou contenu, qu'elle soit fondée sur une garantie, contractuelle, délictuelle ( y compris la négligence ) ou de toute autre réclamation en droit, si oui ou non nous avons été informés de la possibilité de tels dommages, et même si un recours prévu dans les présentes est reconnu coupable d'avoir manqué à sa vocation essentielle.
+
+
+Avertissement et renonciation des droits
+COVOITURAGEMONTREAL inc . ne fait aucune garantie, représentation ou garantie d'aucune sorte en ce qui concerne le site Web et la technologie associée. Toutes les garanties prétendument applicables, les modalités et conditions sont exclues, dans toute la mesure permise par la loi. Votre utilisation du Service est à votre risque unique. Le Service est fourni « en l'état» et « TELS QUE DISPONIBLES ". Le Service est fourni sans garantie d'aucune sorte, expresse ou implicite, y compris, mais sans s'y limiter, les garanties implicites de qualité marchande, d'adéquation à un usage particulier, de non-contrefaçon ou cours d'exécution, sauf tel que prévu par les lois de toutes provinces du Canada. Dans de tels cas, la loi provinciale est applicable dans la mesure nécessaire.
+
+COVOITURAGEMONTREAL inc. ses filiales, sociétés affiliées, et ses concédants ne garantissent pas que a) le Service fonctionnera ininterrompu, sécurisé ou disponible à tout moment ou un lieu particulier ; b) les erreurs ou les défauts seront corrigés ; c) le Service est exempt de virus ou d'autres éléments nuisibles ; ou d) les résultats de l'utilisation du Service répondra à vos exigences.
+
+Si vous ne respectez pas ces Termes et COVOITURAGEMONTREAL inc. choisit de ne pas agir immédiatement, ou choisit de ne pas agir du tout, COVOITURAGEMONTREAL inc. aura quand même droit à tous les droits et recours à une date ultérieure, ou dans toute autre situation où vous ne respectez pas ces Termes. COVOITURAGEMONTREAL inc . ne renonce à aucun de ses droits. COVOITURAGEMONTREAL inc. ne sera pas responsable en cas de violation présumée de ces Termes causée par des circonstances indépendantes de sa volonté.
+
+Vous ne pouvez pas céder, sous- licence ou autrement transférer aucun de vos droits en vertu de ces Termes.
+
+
+Exclusions
+Comme indiqué ci-dessus, certaines juridictions ne permettent pas l'exclusion de certaines garanties ou l'exclusion ou la limitation de responsabilité pour les dommages indirects ou accessoires, de sorte que les limitations ci-dessus peuvent ne pas vous concerner. Les lois provinciales du Canada peuvent s'appliquer à certains produits et services fournis.
+
+
+Droit applicable
+Ces Termes doivent être régis par, et interprétés et appliqués conformément aux lois de la province du Québec et les lois du Canada, le cas échéant.
+Si une quelconque disposition de ces Termes est jugée invalide ou inapplicable par un tribunal de juridiction compétente, alors toutes les dispositions restantes de ces Termes resteront en vigueur. Ces Termes constituent l'intégralité de l'accord entre nous concernant notre Service, et remplacent tous les accords antérieurs, oraux ou autres, concernant le Service.
+
+
+Changements
+Nous nous réservons le droit, à notre seule discrétion, de modifier ou de remplacer les présents Termes à tout moment. Si une révision est majeure, nous ferons tous les efforts raisonnables pour fournir un préavis d'au moins 30 jours avant toutes les nouvelles dispositions qui entreront en vigueur. Ce qui constitue un changement important sera déterminé à notre seule discrétion. En continuant d'accéder ou d'utiliser notre Service après effet de ces modifications, vous acceptez d'être lié par les modalités modifiées. Si vous n'êtes pas d'accord sur les nouveaux Termes, en tout ou en partie, s'il vous plaît arrêtez d'utiliser le site Web et le Service.
+
+
+Assurances
+En tant que conducteur qui prend des passagers à bord de son véhicule, vous certifiez que votre véhicule est assuré et que votre contrat d'assurance inclut une clause de responsabilité civile prenant en charge les passagers en cas d'accident (à l'exception des usagers couverts par un régime public d'assurance automobile). Il est de votre responsabilité d'aviser votre assureur que vous effectuer des trajets en covoiturage avec des passagers qui contribuent financièrement dans le seul but de compenser les frais d'utilisation de votre véhicule pour le trajet effectué et sans que ce soit fait à des fins lucratives.
+
+
+Sécurité
+De manière générale, en tant que membre de Covoiturage.ca, vous vous engagez à adopter en toute circonstance un comportement respectueux des lois et des règlements lors de l'utilisation du Service et lors d'un trajet effectué en covoiturage avec d'autres membres mis en contact par l'entremise du Service.
+
+
+Respect des lois
+En acceptant les termes d'utilisation lors de votre inscription sur Covoiturage.ca, vous comprenez la distinction entre le transport rémunéré de personne (ce qui est illégal), comme par exemple les conducteurs qui s'improvisent chauffeurs de taxi et qui transportent des gens afin d'en faire un revenu versus ce qui est réellement du covoiturage (soit un trajet qui est déjà fait par un conducteur ET qui demande un montant à ses passagers afin de compenser les frais d'utilisation de son véhicule ET sans que ce soit fait à des fins lucratives.)
+
+N'utilisez pas Covoiturage.ca si vous ne respectez pas la loi. Covoiturage.ca ne permet pas à ses usagers d'utiliser son Service dans le but d'en faire une activité commerciale.
+
+Si jamais vous êtes témoins d'une situation où un conducteur utilise le Service de Covoiturage.ca afin d'effectuer du transport rémunéré de personnes, nous vous prions de bien vouloir communiquer avec l'équipe du service à la clientèle de Covoiturage.ca pour nous en informer.
+
+
+Traverser la frontière en covoiturage
+Afin de traverser une frontière en covoiturage, Covoiturage.ca exige que tous les passagers répondent aux exigences suivantes:
+
+Être d'âge majeur
+Posséder tous les documents requis pour traverser la frontière
+Être exempt de tout dossier criminel
+
+Mandat donné à Covoiturage.ca
+En publiant une offre de covoiturage en tant que conducteur inscrit au Service, vous acceptez que Covoiturage.ca agisse à titre de mandataire afin de réaliser les opérations suivantes : (a) trouver un passager souhaitant réserver une place à bord de votre véhicule pour le trajet annoncé; (b) fournir vos coordonnées et toutes les informations requises au passager afin qu'il puisse effectuer le trajet avec vous à bord du véhicule; (c) prélever auprès du passager par l'entremise d'une transaction électronique le montant de la contribution financière que vous exigez pour chacune des places disponibles à bord de votre véhicule; (d) conserver ce montant jusqu'au moment où vous (le conducteur) et le passager aurez confirmé avoir réalisé le trajet; (e) vous transférer par virement de fond électronique le montant des contributions financières payées par vos passagers lorsque le trajet aura été confirmé avoir été fait.
+
+Contactez-nous
+Si vous avez des questions concernant ces Termes et Conditions, nous vous prions de bien vouloir communiquer avec nous.
+
+									</textarea>
+                        </div>
+
+
+                        <div class="field buttons">
+                            <input name="termes" type="checkbox" checked><h4> J'accepte les Termes d'utilisation du Service et je confirme
+                                être âgé d'au moins 16 ans.*</h4>
+                        </div>
+
+                        <div class="field buttons">
+                            <button type="submit" class="btn btn-lg blue-color">Submit</button>
+                        </div>
+
+                        <span id="invalid"></span>
+
+                    </form>
+
+                </div><!-- end .page-content -->
+
+            </div><!-- end .col-md-9 -->
+
+            <div class="col-md-3 col-sm-12 col-xs-12">
+
+                <aside id="sidebar" class="main-sidebar">
+
+                    <div class="search-widget sidebar-widget">
+
+                        <h4 class="widget-title">Search</h4>
+
+                        <div class="widget-content">
+                            <form class="idealforms search-form adaptive" autocomplete="off" novalidate="" action="">
+                                <div class="field idealforms-field idealforms-field-email">
+                                    <input type="text" placeholder="Text" name="search">
+                                </div>
+                                <div class="field buttons">
+                                    <button class="btn btn-lg blue-color" type="submit">Search</button>
+                                </div>
+                            </form>
+                        </div><!-- end .widget-content -->
+
+                    </div><!-- end .archives-widget -->
+
+                    <div class="archives-widget sidebar-widget">
+
+                        <h4 class="widget-title">Archives</h4>
+
+                        <div class="widget-content">
+                            <ul>
+                                <li><a href="#">November 2013</a> <span>(2)</span></li>
+                                <li><a href="#">October 2013</a> <span>(5)</span></li>
+                                <li><a href="#">September 2013</a> <span>(10)</span></li>
+                                <li><a href="#">August 2013</a> <span>(9)</span></li>
+                                <li><a href="#">July 2013</a> <span>(10)</span></li>
+                                <li><a href="#">June 2013</a> <span>(11)</span></li>
+                            </ul>
+                        </div><!-- end .widget-content -->
+
+                    </div><!-- end .archives-widget -->
+
+                    <div class="calendar sidebar-widget">
+
+                        <h4 class="widget-title">Calendar</h4>
+
+                        <div class="widget-content">
+                            <div id="calendar_wrap">
+
+                                <div class="calendar-nav">
+                                    <div  class="calendar-prev">
+                                        <a href="#"></a>
+                                    </div>
+                                    <div class="calendar-next">
+                                        <a href="#"></a>
+                                    </div>
+                                </div>
+
+                                <table id="wp-calendar">
+                                    <caption>April 2014</caption>
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" title="Monday">Mo</th>
+                                        <th scope="col" title="Tuesday">Tu</th>
+                                        <th scope="col" title="Wednesday">We</th>
+                                        <th scope="col" title="Thursday">Th</th>
+                                        <th scope="col" title="Friday">Fr</th>
+                                        <th scope="col" title="Saturday">Sa</th>
+                                        <th scope="col" title="Sunday">Su</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="1" class="pad">&nbsp;</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td>
+                                    </tr>
+                                    <tr>
+                                        <td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td>
+                                    </tr>
+                                    <tr>
+                                        <td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td id="today"><a href="">26</a></td><td>27</td>
+                                    </tr>
+                                    <tr>
+                                        <td>28</td><td>29</td><td>30</td>
+                                        <td class="pad" colspan="4">&nbsp;</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div><!-- end .calendar_wrap -->
+                        </div><!-- end .widget-content -->
+
+                    </div><!-- end .sidebar-widget -->
+
+                </aside><!-- end .main-sidebar -->
+
+            </div><!-- end .col-md-3 -->
+
+        </div><!-- end .row -->
+    </div><!-- end .container -->
+
+</section><!-- end .main-content -->
+
+<footer id="footer">
+
+    <div class="footer-copyright">
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    Copyright by My ride
+                </div>
+
+            </div><!-- end .row -->
+        </div><!-- end .container -->
+
+    </div><!-- end .footer-copyright -->
+
+</footer><!-- end #footer -->
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div><!-- end .modal-header -->
+
+            <div class="modal-body">
+                <form action="" novalidate autocomplete="off" class="idealforms login">
+
+                    <div class="log-header">
+                        <span class="log-in">Log in</span>
+                    </div>
+
+                    <div class="field">
+                        <input name="username" type="text" placeholder="Username">
+                        <span class="error"></span>
+                    </div>
+
+                    <div class="field">
+                        <input type="password" name="password" placeholder="Password">
+                        <span class="error"></span>
+                    </div>
+
+                    <div class="field buttons">
+                        <button type="submit" class="submit btn green-color">Log in</button>
+                    </div>
+
+                    <a href="#" class="log-twitter twitter"><i class="fa fa-twitter"></i>Twitter</a>
+                    <a href="#" class="log-facebook facebook"><i class="fa fa-facebook"></i>Facebook</a>
+
+                    <div class="clearfix"></div>
+
+                </form><!-- end .login -->
+            </div><!-- end .modal-body -->
+
+        </div><!-- end .modal-content -->
+    </div><!-- end .modal-dialog -->
+</div><!-- end .modal -->
+
+<div class="modal fade" id="regModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <form action="" novalidate autocomplete="off" class="idealforms reg">
+
+                    <div class="log-header">
+                        <span class="log-in">Sign up</span>
+                    </div>
+
+                    <div class="field">
+                        <input name="username" type="text" placeholder="Username">
+                        <span class="error"></span>
+                    </div>
+
+                    <div class="field">
+                        <input name="email" type="email"  placeholder="E-Mail">
+                        <span class="error"></span>
+                    </div>
+
+                    <div class="field">
+                        <input type="password" name="password" placeholder="Password">
+                        <span class="error"></span>
+                    </div>
+
+                    <div class="field">
+                        <input name="confirmpass" type="password"  placeholder="Password">
+                        <span class="error"></span>
+                    </div>
+
+                    <div class="field buttons">
+                        <button type="submit" class="submit btn green-color">Sign up</button>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                </form><!-- end .reg -->
+            </div><!-- end .modal-body -->
+
+        </div><!-- end .modal-content -->
+    </div><!-- end .modal-dialog -->
+</div><!-- end .modal -->
+
+<!-- Javascript -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<!-- Main jQuery -->
+<script type="text/javascript" src="js/jquery.main.js"></script>
+<!-- Form -->
+<script type="text/javascript" src="js/jquery.idealforms.min.js"></script>
+<script type="text/javascript" src="js/jquery.idealselect.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.10.4.custom.min.js"></script>
+<!-- Menu -->
+<script type="text/javascript" src="js/hoverIntent.js"></script>
+<script type="text/javascript" src="js/superfish.js"></script>
+<!-- Counter-Up  -->
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+<script type="text/javascript" src="js/jquery.counterup.min.js"></script>
+<!-- Rating  -->
+<script type="text/javascript" src="js/bootstrap-rating-input.min.js"></script>
+<!-- Slicknav  -->
+<script type="text/javascript" src="js/jquery.slicknav.min.js"></script>
+
+</body>

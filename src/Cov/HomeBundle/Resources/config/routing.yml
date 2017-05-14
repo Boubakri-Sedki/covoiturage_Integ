@@ -1,0 +1,3 @@
+cov_home_homepage:
+    path:     /
+    defaults: { _controller: CovHomeBundle:Home:index }

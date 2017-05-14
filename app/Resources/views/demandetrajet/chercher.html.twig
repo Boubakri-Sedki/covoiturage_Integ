@@ -1,0 +1,139 @@
+{% extends '@FOSUser/test.html.twig' %}
+    {% block title %}  Ajout Demande {% endblock %}
+{% block tit %}
+    <h2 ><strong><a href="{{ path('demandetrajet_new') }}" style="color: black">nouveau trajet</a></strong></h2>
+    <h2 ><strong><a href="{{ path('demandetrajet_index') }}" style="color: black">index demande</a></strong></h2>
+{% endblock %}
+    {% block tem %}
+
+
+
+
+
+
+        <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
+        <script src="https://unpkg.com/flatpickr"></script>
+        <div class="page-sumbit">
+            <div class="container">
+                <div class="vertical shadow">
+                    <!-- Nav tabs -->
+                    <div class="page-sub-title textcenter">
+                        <strong>Ajouter une demande</strong>
+                    </div>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+
+
+
+                        <div class="" id="">
+                            <div class="row">
+                                <!-- REGISTER -->
+                                <div >
+                                    <div>
+                                        {# On affiche tous les messages flash dont le nom est « info » #}
+                                        {% for message in app.session.flashbag.get('info') %}
+                                            <div id="alert_success" class="alert alert-success margin-bottom-30">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                <strong>merci !</strong> {{ message }}
+                                            </div>
+                                        {% endfor %}
+                                        {% for message in app.session.flashbag.get('info1') %}
+                                            <div id="alert_danger" class="alert alert-danger margin-bottom-30">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                <strong>attention !</strong> {{ message }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    <form class="form-vertical" method="post">
+                                        <fieldset>
+                                            <div class="alert alert-warning margin-bottom-30">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                La validité de cette demande sera <strong>15 jours </strong>au maximum ou la demande sera supprimer aprés la date d'éxpiration !
+                                            </div>
+                                            {{ form_start(form) }}
+                                            <div class="form-group required">
+                                                <label class="col-md-4 control-label"><i class="fa fa-comment-o" aria-hidden="true"></i>Ville arrivée<sup> *</sup>
+                                                </label>
+                                                <div class="col-md-8">
+                                                    {{form_widget(form.villeArrive, { 'attr': {'class': 'form-control input-md'} }) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label class="col-md-4 control-label"><i class="fa fa-map-marker" aria-hidden="true"></i>Ville de départ<sup> *</sup>
+                                                </label>
+                                                <div class="col-md-8">
+                                                    {{form_widget(form.villeDepart, { 'attr': {'class': 'form-control input-md'} }) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label class="col-md-4 control-label"><i class="fa fa-map-marker" aria-hidden="true"></i>nombre de place<sup> *</sup>
+                                                </label>
+                                                <div class="col-md-8">
+                                                    {{form_widget(form.nombreDePlace, { 'attr': {'class': 'form-control input-md'} }) }}
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group required">
+                                                <label class="col-md-4 control-label"><i class="fa fa-hourglass-half" aria-hidden="true"></i>date depart<sup> *</sup>
+                                                </label>
+                                                <div class="col-md-8">
+                                                    {{form_widget(form.dateDemandee, { 'attr': {'class': 'flatpickr'} }) }}
+                                                    <script>
+                                                        flatpickr(".flatpickr", {
+                                                            enableTime: true
+                                                        });
+                                                    </script>
+                                                </div>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label class="col-md-4 control-label"><i class="fa fa-comments" aria-hidden="true"></i>Description<sup> *</sup>
+                                                </label>
+                                                <div class="col-md-8">
+                                                    {{form_widget(form.description, { 'attr': {'class': 'form-control input-md'} }) }}
+                                                </div>
+                                            </div>
+
+                                            <div class="checkbox">
+                                                <label class="col-md-4 control-label"><i class="fa fa-comments" aria-hidden="true"></i>Aller / Retour<sup> *</sup>
+
+                                                </label>
+                                                <div class="col-md-8">
+                                                    {{form_widget(form.etat, { 'attr': {'class': ''} }) }}
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </fieldset>
+                                        <div class="form-group m-top-30">
+                                            <div class="page-sub-title textcenter">
+                                                <div class="page-sub-title textcenter"></div>
+                                                {{form_widget(form.ajouter, { 'attr': {'class': 'btn btn-danger btn-raised'} }) }}
+                                            </div>
+                                        </div>
+                                        {{ form_end(form) }}
+                                    </form>
+                                </div>
+                                <!-- /REGISTER -->
+                                <!-- WHY? -->
+                                <!-- end:tab content -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+    {% endblock %}
+
+
+
+
+
+
+

@@ -1,0 +1,19 @@
+cov_demande_trajet_demandetrajet:
+    resource: "@CovDemandeTrajetBundle/Resources/config/routing/demandetrajet.php"
+    prefix:   /demandetrajet
+
+cov_demande_trajet_homepage:
+    path:     /
+    defaults: { _controller: CovDemandeTrajetBundle:DemandeTrajet:index }
+cov_demande_trajet_new:
+    path:     /demandetrajet/new
+    defaults: { _controller: CovDemandeTrajetBundle:DemandeTrajet:new }
+cov_demande_trajet_show:
+    path:     /demandetrajet/show
+    defaults: { _controller: CovDemandeTrajetBundle:DemandeTrajet:show }
+cov_demande_trajet_chercher:
+    path:     /demandetrajet/chercher
+    defaults: { _controller: CovDemandeTrajetBundle:DemandeTrajet:chercher }
+cov_demande_trajet_pdf:
+    path:     /demandetrajet/pdf
+    defaults: { _controller: CovDemandeTrajetBundle:DemandeTrajet:generate }

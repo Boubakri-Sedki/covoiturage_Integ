@@ -1,0 +1,50 @@
+cov_temoignage_homepage:
+    path:     /temoignage
+    defaults: { _controller: CovTemoignageBundle:Temoignage:index }
+
+cov_temoignage_ajout:
+    path:     /temoignage/ajout
+    defaults: { _controller: CovTemoignageBundle:Temoignage:ajouterTemoignage }
+
+cov_temoignage_affiche:
+    path:     /temoignage/affiche
+    defaults: { _controller: CovTemoignageBundle:Temoignage:afficherTemoignage }
+
+
+cov_temoignage_accepter:
+    path:     /temoignage/accepter
+    defaults: { _controller: CovTemoignageBundle:Temoignage:accepterTemoignage }
+
+cov_temoignage_refuser:
+    path:     /temoignage/refuser
+    defaults: { _controller: CovTemoignageBundle:Temoignage:refuserTemoignage }
+
+cov_listtem_admin:
+    path:     /admin/listtemoignage
+    defaults: { _controller: CovTemoignageBundle:Temoignage:listTemoignage}
+
+cov_listtem_an:
+    path:     /admin/ajax
+    defaults: { _controller: CovTemoignageBundle:Temoignage:ajax}
+
+cov_listtem_us:
+    path:     /mestemoignages
+    defaults: { _controller: CovTemoignageBundle:Temoignage:getUserTemoignage}
+
+cov_temoignage_modif:
+    path:     /modifier
+    defaults: { _controller: CovTemoignageBundle:Temoignage:modifier}
+
+cov_temoignage_supp:
+    path:     /supprimer
+    defaults: { _controller: CovTemoignageBundle:Temoignage:supprimer}
+
+cov_temoignage_supprimer:
+    path:     /supprimera
+    defaults: { _controller: CovTemoignageBundle:Temoignage:supprimera}
+
+
+
+
+
+

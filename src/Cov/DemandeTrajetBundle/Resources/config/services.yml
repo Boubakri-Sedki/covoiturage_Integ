@@ -1,0 +1,4 @@
+services:
+#    cov_demande_trajet.example:
+#        class: Cov\DemandeTrajetBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

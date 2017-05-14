@@ -1,0 +1,88 @@
+{% extends "@FOSUser/back_office/layout.html.twig" %}
+
+{% block members %}
+
+    <div class="row">
+    <div class="col-xs-12">
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">Reclamation du {{ reclamation.user }} / sujet : {{ reclamation.sujet }}</h3>
+            </div>
+            <div class="box-body">
+                <div class="form-group">
+                    <label>id du reclamation</label>
+                    <input type="text" class="form-control" placeholder="{{ reclamation.id }}" disabled>
+                </div>
+                <br>
+
+                <div class="form-group">
+                    <label>Date d'ajout:</label>
+
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <input type="text" placeholder="{% if reclamation.dateAjout %}{{ reclamation.dateAjout|date('Y-m-d') }}{% endif %}" class="form-control pull-right" id="reservation" disabled>
+                    </div>
+                    <!-- /.input group -->
+                </div>
+                <br>
+
+                <div class="form-group">
+                    <label>Date traité:</label>
+
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <input type="text" placeholder="{% if reclamation.dateTraite %}{{ reclamation.dateTraite|date('Y-m-d') }}{% endif %}" class="form-control pull-right" id="reservation" disabled>
+                    </div>
+                    <!-- /.input group -->
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control" rows="3" placeholder="{{ reclamation.description }}" disabled></textarea>
+                </div>
+                <br>
+
+                <div class="form-group">
+                    <label>Sujet du Reclamation</label>
+                    <input type="text" class="form-control" placeholder="{{ reclamation.sujet }}" disabled>
+                </div>
+                <br>
+                <label>Etat</label>
+                <div class="form-group">
+
+    {% if reclamation.statut == 0 %}
+        <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-thumbs-down"></i>pas encore Traité !</div>
+    {% else %}
+        <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-thumbs-up"></i>Traité !</div>
+    {% endif %}
+                </div>
+
+
+                <!-- /.row -->
+                <a href="{{ path('cov_view_reclamation') }}"><button type="submit"   class="btn btn-info pull-right">Retour vers le table</button></a>
+
+
+
+
+
+                <!-- /input-group -->
+
+                <!-- /input-group -->
+
+                <!-- /input-group -->
+            </div>
+            <!-- /.box-body -->
+        </div>
+        </div>
+
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+
+    <!-- /.box-body -->
+    <!-- /.box-body -->
+
+{% endblock members %}

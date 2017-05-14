@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Temoignages list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Contenu</th>
+                <th>Dateajout</th>
+                <th>Datevalidation</th>
+                <th>Statut</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for temoignage in temoignages %}
+            <tr>
+                <td><a href="{{ path('temoignage_show', { 'id': temoignage.id }) }}">{{ temoignage.id }}</a></td>
+                <td>{{ temoignage.contenu }}</td>
+                <td>{% if temoignage.dateAjout %}{{ temoignage.dateAjout|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if temoignage.dateValidation %}{{ temoignage.dateValidation|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if temoignage.statut %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('temoignage_show', { 'id': temoignage.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('temoignage_edit', { 'id': temoignage.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('temoignage_new') }}">Create a new temoignage</a>
+        </li>
+    </ul>
+{% endblock %}

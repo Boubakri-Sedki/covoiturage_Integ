@@ -1,0 +1,145 @@
+{% extends "@FOSUser/test.html.twig" %}
+
+{% block tit %}  <h2 ><strong><a href="{{ path('fos_user_profile_edit') }}">Temoignage</a></strong></h2> {% endblock tit %}
+
+{% block tem %}
+</br> <strong><p style="color: black ;text-align: center; font-weight: 800;font-size: xx-large">Partagez vos témoignages et anecdotes de covoiturages !</p></strong></br></br>
+
+
+
+
+<div class="field buttons">
+
+
+</div>
+
+<div class="field buttons">
+
+
+</div>
+
+
+
+</div>
+
+<p style="color:#122b40 ;text-align: center; font-weight: 800;font-size: xx-large" >
+
+
+<div class="form-group" id="pp" style="display: none" >
+
+
+    <form method="post">
+
+
+
+        <strong>Date ajout : De </strong>
+        <i class="fa fa-calendar"></i>
+
+
+        <input type="date" class="col-xs-2" id="reservation"  name="da1">
+        <strong> à </strong> <i class="fa fa-calendar"></i>
+        <input type="date" class="col-xs-2" id="reservation" value="01/01/2030" name="da2">
+
+
+
+
+
+        <input type="submit">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+        <label></label>
+
+
+    </form>
+
+
+    <!-- /.input group -->
+
+</div>
+
+<div class="row">
+    <div  class="col-sm-3" style="padding-left: 5%">
+        {% for t in temoignage %}
+
+            <p>  <img src=" {{ asset('uploads/photos/'~t.user.photo) }}"></p>
+            </br>
+            {% else %}
+                <strong><p style="color: black ;text-align: center; font-weight: 800;font-size: xx-large"></p></strong></br></br>
+        {% endfor %}
+
+
+
+
+    </div>
+    <div class="col-sm-8">
+        {% for t in temoignage %}
+
+            <p style="color: black;background-color: white;padding: 1%"><strong>Nom: </strong>{{ t.user.username }}</br> <strong>Fonction: </strong>{{ t.user.fonction }}</br>
+                {{ t.contenu|slice(0, 300)~' ...' }}
+                <a data-toggle="modal" data-target="#loginModal{{ loop.index }}">
+                    Lire la suite  </a> </br>
+                {% if t.statut != 1 %}
+                <a href="{{ path('cov_temoignage_modif',{'id':t.id}) }}"> Modifier </a> </br>
+                {% endif %}
+
+                <a href="{{ path('cov_temoignage_supp',{'id':t.id}) }}"> Supprimer</a>
+            </p></br></br></br>
+            {% else %}
+               <p style="color: black ;text-align: center; font-weight: 800;font-size: xx-large">Vous n'avez pas de témoignages !</p></br></br>
+        {% endfor %}
+
+
+
+    </div>
+    <div>
+    </div>
+    {% endblock tem %}
+
+    {% block modal %}
+
+        {% for t in temoignage %}
+        <div class="modal fade" id="loginModal{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div><!-- end .modal-header -->
+
+
+                    <div class="modal-body">
+
+                        <form action="" novalidate autocomplete="off" class="idealforms login">
+                            <div class="log-header">
+
+                                <span class="log-in"><img src=" {{ asset('uploads/photos/'~t.user.photo) }}"> </span>
+
+                            </div>
+
+                            <strong>User Name: </strong>{{ t.user.username }}</br>
+                            <strong>Fonction: </strong>{{ t.user.fonction }}</br>
+                            <strong>Age: </strong>{{
+                            ('now'|date('Y') - t.user.dateNaissance|date('Y') - 1) + ('now'|date('2010-m-d')|date('U') -
+                            t.user.dateNaissance|date('2010-m-d')|date('U') >= 0 ? 1 : 0)
+                            }} ans
+                            <div class="field">
+                                </br>
+                                {{ t.contenu }}
+                            </div>
+                            <div class="clearfix"></br><strong>Publié le {{ t.dateValidation|date }}</strong></div>
+
+                        </form><!-- end .login -->
+                    </div><!-- end .modal-body -->
+
+                </div><!-- end .modal-content -->
+            </div><!-- end .modal-dialog -->
+        </div><!-- end .modal -->
+        {% endfor %}
+        <script>
+
+            function tog() {
+                $("#pp").toggle();
+            };
+
+
+        </script>
+    {% endblock modal %}

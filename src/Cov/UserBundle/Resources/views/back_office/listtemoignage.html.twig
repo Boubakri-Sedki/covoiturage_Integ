@@ -1,0 +1,234 @@
+{% extends "@FOSUser/back_office/layout.html.twig" %}
+
+{% block members %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header" style="background-color: #9cc2cb">
+                    <h3 class="box-title" >Liste des témoignages</h3>
+
+
+                    <div class="box-tools" >
+
+
+
+                        <div class="input-group input-group-sm" style="width: 150px;">
+
+                            <input type="text" name="table_search" id="rech" onkeyup="rechercher()"  placeholder="Search">
+
+
+
+
+                        </div>
+                        <i class="fa fa-fw fa-hand-o-down" id="sh" onclick="tog()" >Plus</i>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group" id="pp" style="background-color: lightgrey;display: none" >
+                    <label></label>
+
+                    <form method="post">
+
+                    <div class="input-group" >
+
+                        <strong>Date ajout : De </strong>
+                            <i class="fa fa-calendar"></i>
+
+
+                        <input type="date" class="col-xxs-3" id="reservation"  name="da1">
+                       <strong> à </strong> <i class="fa fa-calendar"></i>
+                        <input type="date" class="col-xxs-3" id="reservation" value="01/01/2030" name="da2">
+
+                        <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date validation : De </strong>
+                        <i class="fa fa-calendar"></i>
+
+
+                        <input type="date" class="col-xxs-3" id="reservation" value="01/01/2000" name="dv1">
+                        <strong> à </strong> <i class="fa fa-calendar"></i>
+                        <input type="date" class="col-xxs-3" id="reservation" value="01/01/2030" name="dv2">
+
+                        <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Statut: </strong>&nbsp;
+                        <select name="st">
+                            <option></option>
+                            <option value="0">En Attente</option>
+                            <option value="1">Publié</option>
+                            <option value="-1">Refusé</option>
+                        </select>
+
+                        <input type="submit" value="Rechercher">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label></label>
+                    </div>
+
+                    </form>
+
+
+                    <!-- /.input group -->
+
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding" id="ajax">
+                    <table class="table table-hover" id="test">
+                        <tr>
+
+                            <th>User Name</th>
+                            <th>Date d'ajout</th>
+                            <th>Contenu</th>
+                            <th>statut</th>
+                            <th>Date Validation</th>
+                            <th>Action</th>
+
+                        </tr>
+                        <tbody id="tb">
+
+
+                        {% for t in temoignage %}
+                            <tr id="res">
+
+                                <td>{{ t.user.username }}</td>
+                                <td>{{ t.dateAjout|date }}</td>
+                                <td><a href="{{ path('cov_temoignage_affiche',{'id':t.id}) }}"> {{ t.contenu|slice(0, 10)~ ' ...'}}</a></td>
+
+                                {% if t.statut == 1 %}
+                                    <td><span class="label label-success">Publié</span></td>
+                                {% elseif t.statut == -1 %}
+
+                                    <td><span class="label label-danger">Refusé</span></td>
+                                    {% else %}
+                                    <td><span class="label label-warning">En attente</span></td>
+
+                                {% endif %}
+
+                                {% if t.dateValidation != null %}
+                                <td>{{ t.dateValidation|date }}</td>
+                                {% else %}
+                                <td>non validé</td>
+                                {% endif %}
+
+
+                                <td>  <div class="btn-group">
+                                        <button type="button" class="btn btn-danger">Action</button>
+                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="{{ path('cov_temoignage_accepter',{'id':t.id}) }}">Publier</a></li>
+                                            <li><a href="{{ path('cov_temoignage_refuser',{'id':t.id}) }}">Refuser</a></li>
+                                            <li><a href="{{ path('cov_temoignage_supprimer',{'id':t.id}) }}">Supprimer</a></li>
+                                            <li><a href="#">Text member</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="{{ path('cov_temoignage_affiche',{'id':t.id}) }}">Afficher</a></li>
+                                        </ul>
+                                    </div></td>
+
+                            </tr>
+
+
+
+
+
+
+                        {% else %}
+                            <h2>tableau vide</h2>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                    </br></br></br></br></br>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+<div id="a"></div>
+
+   <script>
+       function rechercher() {
+
+               var searchText = $("#rech").val();
+           var searchRequest = null;
+
+
+           searchRequest = $.ajax({
+               type: "GET",
+               url: "{{ path('cov_listtem_an') }}",
+               data: {
+                   'q': searchText
+               },
+               dataType: "text",
+               success: function (msg) {
+
+
+                   //we need to check if the value is the same
+                       var result = JSON.parse(msg);
+
+                   var aff='<tbody id="tb">';
+
+                       $.each(result, function (key, arr) {
+                           $.each(arr, function (id, value) {
+                               if (key == 'entities') {
+                                   if (id != 'error') {
+                                       if(value[2]==1)
+                                           var st='<td><span class="label label-success">Approved</span></td>';
+                                       else if(value[2]==0)
+                                           var st='<td><span class="label label-warning">Pending</span></td>';
+                                       else
+                                           var st='<td><span class="label label-danger">Denied</span></td>';
+                                       div='<td><div class="btn-group">'+
+                                               '<button type="button" class="btn btn-danger">Action</button>'+
+                                               '<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">'+
+                                               '<span class="caret"></span>'+
+                                               '<span class="sr-only">Toggle Dropdown</span>'+
+                                       '</button>';
+
+                                       div+='<ul class="dropdown-menu"><li><a href="/covoiturage/web/temoignage/accepter?id='+value[0]+'">Publier</a></li>';
+                                       div+='<li><a href="/covoiturage/web/temoignage/refuser?id='+value[0]+'">Refuser</a></li><li><a href="/covoiturage/web/temoignage/supprimera?id='+value[0]+'">Supprimer</a></li>' +
+                                               '<li><a href="#">Text member</a></li><li class="divider"></li>';
+                                       div+='<li><a href="/covoiturage/web/temoignage/affiche?id='+value[0]+'">Afficher</a></li></ul></td>';
+                                       d=null;
+                                       aff+='<tr><td> ' + value[1] + '</td><td> ' + value[3] + '</td><td><a href="/covoiturage/web/temoignage/affiche?id='+value[0]+'">'+ value[5].slice(0,10) +' ... </a></td> ' + st + '<td>' + value[4] +'</td>'+ div +'</tr>';
+
+                                       //$("#tb").replaceWith('<tr><td> ' + value[1] + '</td><td> ' + value[3] + '</td><td><a href="/covoiturage/web/temoignage/affiche?id='+value[0]+'">'+ value[5].slice(0,10) +' ... </a></td> ' + st + '<td>' + d +'</td>'+ div +'</tr>');
+                                   }
+
+
+
+
+                                       //entitySelector.append('<li class="errorLi">' + value + '</li>');
+
+
+                               }
+                           });
+                       });
+
+                   aff+='</tbody>';
+
+                   $("#tb").replaceWith(aff);
+
+
+               }
+
+           })
+       }
+
+
+
+   </script>
+
+    <script>
+
+        function tog() {
+            $("#pp").toggle();
+        };
+
+
+    </script>
+
+
+
+{% endblock members %}

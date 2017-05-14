@@ -1,0 +1,39 @@
+cov_user_homepage:
+    path:     /
+    defaults: { _controller: CovUserBundle:Default:index }
+
+cov_user_homepage_admin:
+    path:     /admin
+    defaults: { _controller: CovUserBundle:Default:admin }
+
+cov_listmembers_admin:
+    path:     /admin/listmembers
+    defaults: { _controller: CovUserBundle:Default:listmembers }
+
+cov_view_member_profile_admin:
+    path:     /admin/memberprofile
+    defaults: { _controller: CovUserBundle:Default:viewProfile }
+
+
+cov_listtem_admin:
+    path:     /admin/listtemoignage
+    defaults: { _controller: CovUserBundle:Default:listTemoignage }
+
+
+cov_view_reclamation:
+    path:     /admin/reclamation
+    defaults: { _controller: CovUserBundle:Default:viewtable }
+
+cov_view_reclamation_traite:
+    path:     /admin/reclamation/{id}
+    defaults: { _controller: CovUserBundle:Default:TraiteReclamation }
+cov_listmembers_active:
+    path:     /admin/listmembers/{id}
+    defaults: { _controller: CovUserBundle:Default:ActivateUser }
+cov_listmembers_block:
+    path:     /admin/listmembers/{id}
+    defaults: { _controller: CovUserBundle:Default:BlockUser }
+
+cov_view_reclamation_une:
+    path:     /admin/reclamationn/{id}
+    defaults: { _controller: CovReclamationBundle:Reclamation:showReclamation }

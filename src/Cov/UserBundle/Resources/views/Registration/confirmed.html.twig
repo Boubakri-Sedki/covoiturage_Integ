@@ -1,0 +1,62 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block menu %}
+
+    <div class="col-md-8 col-sm-8 col-xs-12">
+
+        <nav id="nav" class="main-navigation" hidden>
+
+            <ul class="navigation">
+                <li>
+                    <a href="{{ path('cov_home_homepage') }}">Home</a>
+                </li>
+                <li>
+                    <a href="{{ path('cov_annonce_homepage') }}">rides</a>
+                </li>
+                <li>
+                    <a href="#">Pages</a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="{{ path('cov_evenement_homepage') }}">Events</a>
+                        </li>
+                        <li>
+                            <a href="single-post.html">Single post</a>
+                        </li>
+                        <li>
+                            <a href="single-article.html">Single article</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{{ path('cov_forum_homepage') }}">Forum</a>
+                </li>
+                <li>
+                    <a href="{{ path('cov_reclamation_homepage') }}">Contact</a>
+                </li>
+            </ul>
+
+        </nav><!-- end .main-navigation -->
+
+    </div><!-- end .col-md-8 -->
+
+
+{% endblock menu %}
+
+{% block fos_user_content %}
+<div class="modal-dialog" >
+    <div class="modal-content">
+
+
+        <div class="modal-body" >
+    <p><h3>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p></h3>
+            <h3><a href="{{ path('fos_user_profile_show') }}">View Profilr</a> </h3>
+           <h3> <a href="{{ path('cov_home_homepage') }}">Home Page</a></h3>
+    {% if targetUrl %}
+    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+    {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock fos_user_content %}

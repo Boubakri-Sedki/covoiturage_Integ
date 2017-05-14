@@ -1,0 +1,60 @@
+{% extends '@FOSUser/test.html.twig' %}
+{% block title %} voir Demande Trajet {% endblock %}
+{% block tit %}
+    <h2 ><strong><a href="{{ path('demandetrajet_new') }}" style="color: black">nouveau trajet</a></strong></h2>
+    <h2 ><strong><a href="{{ path('demandetrajet_index') }}" style="color: black">afficher les demandes</a></strong></h2>
+{% endblock %}
+{% block tem %}
+    <h1>Demandetrajet</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Dateajout</th>
+                <td>{% if demandeTrajet.dateAjout %}{{ demandeTrajet.dateAjout|date('Y-m-d H:i') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datedemandee</th>
+                <td>{% if demandeTrajet.dateDemandee %}{{ demandeTrajet.dateDemandee|date('Y-m-d H:i') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Nombredeplace</th>
+                <td>{{ demandeTrajet.nombreDePlace }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ demandeTrajet.description }}</td>
+            </tr>
+            <tr>
+                <th>Villedepart</th>
+                <td>{{ demandeTrajet.villeDepart }}</td>
+            </tr>
+            <tr>
+                <th>Villearrive</th>
+                <td>{{ demandeTrajet.villeArrive }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ demandeTrajet.etat }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="page-sub-title textcenter">
+        <h2>
+            <strong>
+                <a href="{{ path('demandetrajet_edit', { 'id': demandeTrajet.id }) }}">Edit</a>
+            </strong>
+        </h2>
+        <h2>
+            <strong>
+                <a class="button" href="{{ path('demandetrajet_index') }}">Back to the list</a>
+            </strong>
+        </h2>
+    </div>
+
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+
+{% endblock %}

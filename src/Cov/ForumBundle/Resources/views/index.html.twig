@@ -1,0 +1,111 @@
+{% extends "DForumBundle:Post:lauoutuser.html.twig" %}
+
+
+
+{% block stylesheets %}
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{% block title %}My Ride | Dashboard{% endblock title %}</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <!-- Bootstrap 3.3.6 -->
+        <link rel="stylesheet" href="{{ asset('bundles/covuser/back_office/bootstrap/css/bootstrap.min.css') }}">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+
+        <!-- bootstrap datepicker -->
+        <link rel="stylesheet" href="{{ asset('bundles/covuser/back_office/plugins/iCheck/all.css') }}">
+        <!-- iCheck for checkboxes and radio inputs -->
+
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{{ asset('bundles/covuser/back_office/dist/css/AdminLTE.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/covuser/back_office/plugins/daterangepicker/daterangepicker.css') }}">
+        <!-- bootstrap datepicker -->
+        <link rel="stylesheet" href="{{ asset('bundles/covuser/back_office/plugins/datepicker/datepicker3.css') }}">
+        <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+              page. However, you can choose any other skin. Make sure you
+              apply the skin class to the body tag so the changes take effect.
+        -->
+        <link rel="stylesheet" href="{{ asset('bundles/covuser/back_office/dist/css/skins/skin-blue.min.css') }}">
+        <script src="{{ asset('bundles/covuser/js/ajax.js') }}" ></script>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+        <![endif]-->
+    </head>
+<style>
+.category {
+    padding-top:30px;
+    height:250px;
+    margin-top:20px;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+
+
+
+
+
+
+
+        <!-- Main Footer -->
+
+
+        <!-- Control Sidebar -->
+
+        <!-- /.control-sidebar -->
+        <!-- Add the sidebar's background. This div must be placed
+             immediately after the control sidebar -->
+
+
+  <h1 class="text-center">{{ 'discutea.forum.forumlist'|trans }}</h1>
+  <div class="col-md-12" style="background-color: #ffff99">
+    {% for category in categories if is_granted('CanReadCategory', category) %}
+      <h2><strong>{{ category.name }}</strong></h2>
+      <hr />
+      <div class="row forum-category-bloc" style="background-color: #e6e6e6">
+          {% for forum in category.forums %}
+            <div class="col-xs-12 col-sm-6 col-md-4">
+              <div class="category thumbnail text-center forum-box color-dark">
+                <h3><a href="{{ path('discutea_forum_topic', {'slug': forum.slug}) }}" title="{{ forum.name }}">{{ forum.name }}</a></h3>
+                <p>{{ forum.description }}</p>
+                <hr />
+                <div class="text-center">
+                {% set lastTopic = dfLastTopicInForum(forum) %}
+                {% if lastTopic is not null %}
+                    {% if lastTopic.posts.last.poster is not null %}
+                      {% set username = lastTopic.posts.last.poster.username %}
+                    {% else %}
+                      {% set username = 'discutea.forum.deleted.user'|trans %}
+                    {% endif %}
+                    <a class="lastComment" href="{{ dfLastPostPages(lastTopic.posts.last) }}">
+                      <p>
+                        {{ 'discutea.forum.lastpostby'|trans }} <strong>{{ username }}</strong>
+                        <br />{{ lastTopic.posts.last.date|date("Y-m-d H:i:s") }}
+                      </p>
+                    </a>
+                {% else %}
+                    <p>{{ 'discutea.forum.null'|trans }}</p>
+                {% endif %}
+                </div>
+              </div>
+            </div>
+          {% else %}
+            <p class="text-center"><a class="btn btn-primary" href="{{ path('discutea_forum_create_forum', {'id': category.id}) }}">{{ 'discutea.forum.category.addforum'|trans }}</a></p>
+          {% endfor %}
+      </div>  
+    {% else %}
+      <p class="text-center"><a class="btn btn-primary" href="{{ path('discutea_forum_create_category') }}"> {{ 'discutea.forum.category.createnew'|trans }} </a></p>
+    {% endfor %}
+  </div>
+{% endblock %}

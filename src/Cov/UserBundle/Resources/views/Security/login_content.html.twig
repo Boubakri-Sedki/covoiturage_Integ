@@ -1,0 +1,50 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+
+<div class="modal-dialog" >
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+        </div><!-- end .modal-header -->
+
+        <div class="modal-body" >
+            <form action="{{ path("fos_user_security_check") }}" method="post" novalidate autocomplete="off" class="idealforms login" >
+                {% if csrf_token %}
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                {% endif %}
+                <div class="log-header" >
+                    <span class="log-in">Log in</span>
+                </div>
+                <a href="{{ path('fos_user_resetting_request') }}">  <strong><h4 style="color: red">Forgot Password ?</h4></strong></a>
+
+
+                <div class="field">
+                    <input id="username" name="_username" value="{{ last_username }}"  type="text" placeholder="Username" required="required">
+                    <span class="error"></span>
+                </div>
+
+                <div class="field">
+                    <input type="password" id="password" name="_password"  placeholder="Password" required="required">
+                    <span class="error"></span>
+                </div>
+
+                <div class="field buttons">
+                    <button type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="submit btn green-color">Log in</button></br>
+
+                </div>
+
+                <a href="#" class="log-twitter twitter"><i class="fa fa-twitter"></i>Twitter</a>
+                <a href="#" class="log-facebook facebook"><i class="fa fa-facebook"></i>Facebook</a>
+
+                <div class="clearfix"></div>
+
+            </form><!-- end .login -->
+        </div><!-- end .modal-body -->
+
+    </div><!-- end .modal-content -->
+</div><!-- end .modal-dialog -->
+

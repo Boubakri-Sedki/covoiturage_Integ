@@ -1,0 +1,21 @@
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+<script type="text/javascript">
+ jQuery.validator.setDefaults({
+  debug: true,
+  success: "valid"
+ });;
+</script>
+
+<script>
+ $(document).ready(function(){
+  $("#myform").validate({
+   rules: {
+    field: {
+     required: true,
+     minlength: 3
+    }
+   }
+  });
+ });
+</script>

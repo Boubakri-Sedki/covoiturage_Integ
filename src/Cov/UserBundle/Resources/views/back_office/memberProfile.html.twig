@@ -1,0 +1,66 @@
+{% extends "@FOSUser/test.html.twig" %}
+
+{% block title %} {{ parent() }} Admin - memberProfile{% endblock title %}
+{% block tit %}{% endblock tit %}
+
+{% block fos_user_img %}
+
+{% for user in member  %}
+    <form action="{{  path('fos_user_profile_edit')}}">
+
+        <label for="file-input">
+            {% if user.photo != null %}
+                &nbsp; &nbsp;&nbsp;  &nbsp; &nbsp;&nbsp; <img src=" {{ asset('uploads/photos/' ~ user.photo) }}">
+            {% elseif user.sexe == "h" %}
+                &nbsp; &nbsp;&nbsp;  &nbsp; &nbsp;&nbsp; <img src=" {{ asset('bundles/covuser/img/a.png') }}">
+
+            {% elseif user.sexe == 'f' %}
+                &nbsp; &nbsp;&nbsp;  &nbsp; &nbsp;&nbsp; <img src=" {{ asset('bundles/covuser/img/female.jpg') }}">
+
+            {% endif %}
+        </label>
+
+
+        <input value="Upload" type="file"  name="img" id="file-input" style="display: none">
+    </form>
+{% endfor %}
+
+{% endblock fos_user_img %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block fos_user_content %}
+<div class="fos_user_user_show">
+
+    {% for user in member  %}
+
+    <h3><strong>User Name</strong></h3>
+    <input type="text" name="username" value="{{ user.username }}"
+           onfocus="  this.style.color='Red';  " />
+    <h3><strong>First Name</strong></h3>
+    <input type="text" name="prenom" value="{{ user.prenom }}" readonly/>
+    <h3><strong>Name</strong></h3>
+    <input type="text" name="name" value="{{ user.name }}" readonly/>
+    <h3><strong>Email</strong></h3>
+    <input type="text" name="email" value="{{ user.email }}" readonly/>
+
+    <h3><strong>Fonction</strong></h3>
+    <input type="text" name="email" value="{{ user.fonction }}" readonly/>
+
+    <h3><strong>Gouvernorat</strong></h3>
+    <input type="text" name="email" value="{{ user.gouvernorat.name }}" readonly/>
+
+
+
+    <h3><strong>Telephone</strong></h3>
+    <input type="text" name="email" value="{{ user.telephone }}" readonly/>
+
+    <h3><strong>Age</strong></h3>
+    <input type="text" name="email" value="{{
+    ('now'|date('Y') - user.dateNaissance|date('Y') - 1) + ('now'|date('2010-m-d')|date('U') -
+    user.dateNaissance|date('2010-m-d')|date('U') >= 0 ? 1 : 0)
+    }}" readonly/>
+
+
+
+    {% endfor %}
+</div>
+    {% endblock fos_user_content %}

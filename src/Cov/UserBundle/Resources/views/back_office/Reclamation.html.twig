@@ -1,0 +1,88 @@
+{% extends "@FOSUser/back_office/layout.html.twig" %}
+
+{% block members %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header" style="background-color: #9cc2cb">
+                    <h3 class="box-title" >La Liste Des Réclamations</h3>
+
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="table_search" id="recherche" class="form-control pull-right" placeholder="Recherche">
+
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tr>
+
+                            <th>Id</th>
+                            <th>Utilisateur</th>
+                            <th>Dateajout</th>
+                            <th>Datetraite</th>
+                            <th>Description</th>
+                            <th>Sujet</th>
+                            <th>statut</th>
+                            <th>Action</th>
+                        </tr>
+                        {% for reclamation in reclamations %}
+                            <tr>
+                                <td><a href="{{ path('cov_view_reclamation_une', { 'id': reclamation.id }) }}">{{ reclamation.id }}</a></td>
+                                <th>{{ reclamation.user }}</th>
+                                <td>{% if reclamation.dateAjout %}{{ reclamation.dateAjout|date('Y-m-d') }}{% endif %}</td>
+                                <td>{% if reclamation.dateTraite %}{{ reclamation.dateTraite|date('Y-m-d') }}{% endif %}</td>
+                                <td>{{ reclamation.description }}</td>
+                                <td>{{ reclamation.sujet }}</td>
+
+                                {% if reclamation.statut == 1 %}
+                                    <td><span class="label label-success">Réclamation traité</span></td>
+                                {% else %}
+                                    <td><span class="label label-warning">En cours</span></td>
+                                {% endif %}
+
+                                <td>  <div class="btn-group">
+                                        <button type="button" class="btn btn-danger">Action</button>
+                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                            {% if reclamation.statut == 0 %}
+                                            <li><a href="{{ path('cov_view_reclamation_traite', { 'id': reclamation.id }) }}">Traiter laa Réclamation</a></li>
+                            {% else %}
+                                            <li><a title="Réclamation déjà Traité" >Réclamation  déjà Traité</a></li>
+                            {% endif %}
+                                            <li><a href="#">Email member</a></li>
+                                            <li><a href="#">Text member</a></li>
+                                            <li class="divider"></li>
+
+                                        </ul>
+                                    </div></td>
+                            </tr>
+
+
+                        {% else %}
+                            <h2>Votre Tableau est vide</h2>
+                        {% endfor %}
+
+                    </table>
+
+                </div>
+
+                <!-- /.box-body -->
+            </div>
+
+            <!-- /.box -->
+
+                <!-- /.box-body -->
+
+    <!-- /.box-body -->
+
+{% endblock members %}
